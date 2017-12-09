@@ -1,0 +1,19 @@
+GLUtesselator* tobj = gluNewTess();
+			if (!tobj) return;
+
+			gluTessCallback(tobj, GLU_TESS_VERTEX, (void (CALLBACK *)())vertexCallback);
+			gluTessCallback(tobj, GLU_TESS_BEGIN, (void (CALLBACK *)())beginCallback);
+			gluTessCallback(tobj, GLU_TESS_END, (void (CALLBACK *)())endCallback);
+			gluTessCallback(tobj, GLU_TESS_ERROR, (void (CALLBACK *)())errorCallback);
+			gluTessCallback(tobj, GLU_TESS_COMBINE, (void (CALLBACK *)())combineCallback);
+
+			gluTessBeginPolygon(tobj, NULL);
+
+			gluTessBeginContour(tobj);
+
+			gluTessVertex(tobj, he->sv->coordinate, he->sv->coordinate);
+
+			gluTessEndContour(tobj);
+
+			gluTessEndPolygon(tobj);
+			gluDeleteTess(tobj);
